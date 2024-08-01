@@ -137,3 +137,12 @@ p {
 .makieren {
 color:red
 }
+#kalender-container{
+ 
+margin:19%;
+}
+#buttonDiv{
+  display:flex;
+  justify-content: center;
+
+}
