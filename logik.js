@@ -1,17 +1,17 @@
 let date = new Date();
-let month = date.getMonth() + 1;
-let year = date.getYear() + 1900;
+let month = datToday.getMonth() + 1;
+let year = datToday.getYear() + 1900;
 let dateD = document.getElementById("dateD");
-let germandate = date.toLocaleDateString("de-DE");
+let germandate = datToday.toLocaleDateString("de-DE");
 document.getElementById("dateD").innerText = germandate;
 document.getElementById("year").innerText = year;
 
 function richtigesDatumAusgeben() {
   dateD.innerText = `${
-    date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+    datToday.getDate() < 10 ? `0${datToday.getDate()}` : datToday.getDate()
   }.${
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-  }.${date.getFullYear()}`;
+    datToday.getMonth() + 1 < 10 ? `0${datToday.getMonth() + 1}` : datToday.getMonth() + 1
+  }.${datToday.getFullYear()}`;
 }
 richtigesDatumAusgeben();
 
@@ -21,7 +21,7 @@ richtigesDatumAusgeben();
 // da wird der wert von dem weekday index an das selbst erstelle Array
 //wiedergegeben ( also index 0 = sonntag, 1 = montag usw.)
 // das wird in der variable gespeichert und dann ausgegeben
-let weekday = date.getDay();
+let weekday = datToday.getDay();
 let weekdays = [
   "Sonntag",
   "Montag",
@@ -54,7 +54,7 @@ document.getElementById("monthD").innerText = monateName;
 
 // wenn der Wert von 1-7 ist muss es sich ja um den ersten Tag in der Woche halten( bei 7)
 //Tag des Monatstrifft es besser wie "Woche"
-let TageImMonat = date.getDate();
+let TageImMonat = datToday.getDate();
 
 if ((TageImMonat >= 1) & (TageImMonat <= 7)) {
   document.getElementById("weekInMonth").innerText = "erste";
@@ -107,8 +107,8 @@ const wochentage = [
   "Sonntag",
 ];
 const table = document.getElementById("calendar-table");
-let currentYear = date.getFullYear();
-let currentMonth = date.getMonth();
+let currentYear = datToday.getFullYear();
+let currentMonth = datToday.getMonth();
 let firstDayOfMonth = new Date(currentYear, currentMonth, 1);
 let startDay = (firstDayOfMonth.getDay() + 6) % 7; // Montag = 0, Sonntag = 6
 let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
