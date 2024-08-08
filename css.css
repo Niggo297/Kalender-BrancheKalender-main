@@ -15,6 +15,20 @@ body {
   align-items: center;
   color: linear-gradient(135deg, #175ae6, #83de08);
 }
+h1{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+#MonatÜberschrift{
+  margin-left:4%;
+  color:#175ae6
+
+}
+#JahresÜberschrift{
+  color: #175ae6;
+  margin-left: 2%;
+}
 
 main {
   display: flex;
@@ -138,11 +152,28 @@ p {
 color:red
 }
 #kalender-container{
- 
-margin:19%;
+ margin-top:2%;
+margin-left:25%;
 }
 #buttonDiv{
-  display:flex;
-  justify-content: center;
+  margin:0;
+  padding:0;
 
+}
+button{
+  background-color: #175ae6;
+  color: white;
+  height:40px;
+  width: 70px;;
+ 
+
+}
+#button1{
+margin-left:25%;
+}
+#button2{
+margin-left:2%;
+}
+button:hover{
+  cursor: pointer;
 }

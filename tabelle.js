@@ -1,8 +1,8 @@
 let datToday = new Date();
 let date = new Date(
-  datToday.getFullYear(),
-  datToday.getMonth(),
-  datToday.getDate()
+  date.getFullYear(),
+  date.getMonth(),
+  date.getDate()
 );
 // let ersterTagDesJahres = new Date(datToday.getFullYear(), 0, 1); // 0 steht für Januar
 // let ersterTagMonat = new Date(datToday.getFullYear(), datToday.getMonth(), 1); // z.B Feb 01 2024
@@ -40,8 +40,8 @@ let date = new Date(
       "Dezember",
     ];
 
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let monateNameÜberschrift = monate[month - 1];
     document.getElementById("MonatÜberschrift").innerText =
       monateNameÜberschrift;
@@ -59,11 +59,11 @@ let date = new Date(
   
   
   function InfoBox() {
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let dateD = document.getElementById("dateD");
-    let germandate = datToday.toLocaleDateString("de-DE");
-    let weekday = datToday.getDay();
+    let germandate = date.toLocaleDateString("de-DE");
+    let weekday = date.getDay();
     let weekdays = [
       "Sonntag",
       "Montag",
@@ -96,19 +96,19 @@ let date = new Date(
     document.getElementById("monthD").innerText = MonatAusgebenText;
 
     dateD.innerText = `${
-      datToday.getDate() < 10 ? `0${datToday.getDate()}` : datToday.getDate()
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
     }.${
-      datToday.getMonth() + 1 < 10
-        ? `0${datToday.getMonth() + 1}`
-        : datToday.getMonth() + 1
-    }.${datToday.getFullYear()}`;
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1
+    }.${date.getFullYear()}`;
 
     // das gleiche wie bei den wochentage nur für die monate
     // ich habe einen array und dieser array gibt die zahl des index month wieder
 
     // wenn der Wert von 1-7 ist muss es sich ja um den ersten Tag in der Woche halten( bei 7)
     //Tag des Monatstrifft es besser wie "Woche"
-    let TagIndex = datToday.getDate();
+    let TagIndex = date.getDate();
 
     if ((TagIndex >= 1) & (TagIndex <= 7)) {
       document.getElementById("weekInMonth").innerText = "erste";
@@ -139,7 +139,7 @@ let date = new Date(
   
   
   function HeutigenTagRotMakieren() {
-    todaydate = datToday.getDate();
+    todaydate = date.getDate();
     let tdlist = document.getElementsByTagName("td");
     for (let i = 0; i < tdlist.length; i++) {
       if (tdlist[i].innerText == todaydate) {
@@ -193,8 +193,8 @@ let date = new Date(
       "Dezember",
     ];
 
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let monateNameÜberschrift = monate[month - 1];
     document.getElementById("MonatÜberschrift").innerText =
       monateNameÜberschrift;

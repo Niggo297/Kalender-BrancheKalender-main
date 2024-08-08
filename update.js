@@ -1,9 +1,9 @@
-let datToday = new Date();
-let date = new Date(
-  datToday.getFullYear(),
-  datToday.getMonth(),
-  datToday.getDate()
-);
+let date = new Date();
+// let date = new Date(
+//   date.getFullYear(),
+//   date.getMonth(),
+//   date.getDate()
+// );
 // let ersterTagDesJahres = new Date(datToday.getFullYear(), 0, 1); // 0 steht für Januar
 // let ersterTagMonat = new Date(datToday.getFullYear(), datToday.getMonth(), 1); // z.B Feb 01 2024
 // let startTag = ersterTagMonat.getDay(); // Thu
@@ -40,8 +40,8 @@ let date = new Date(
       "Dezember",
     ];
 
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let monateNameÜberschrift = monate[month - 1];
     document.getElementById("MonatÜberschrift").innerText =
       monateNameÜberschrift;
@@ -59,11 +59,11 @@ let date = new Date(
   
   
   function InfoBox() {
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let dateD = document.getElementById("dateD");
-    let germandate = datToday.toLocaleDateString("de-DE");
-    let weekday = datToday.getDay();
+    let germandate = date.toLocaleDateString("de-DE");
+    let weekday = date.getDay();
     let weekdays = [
       "Sonntag",
       "Montag",
@@ -96,19 +96,19 @@ let date = new Date(
     document.getElementById("monthD").innerText = MonatAusgebenText;
 
     dateD.innerText = `${
-      datToday.getDate() < 10 ? `0${datToday.getDate()}` : datToday.getDate()
+      date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
     }.${
-      datToday.getMonth() + 1 < 10
-        ? `0${datToday.getMonth() + 1}`
-        : datToday.getMonth() + 1
-    }.${datToday.getFullYear()}`;
+      date.getMonth() + 1 < 10
+        ? `0${date.getMonth() + 1}`
+        : date.getMonth() + 1
+    }.${date.getFullYear()}`;
 
     // das gleiche wie bei den wochentage nur für die monate
     // ich habe einen array und dieser array gibt die zahl des index month wieder
 
     // wenn der Wert von 1-7 ist muss es sich ja um den ersten Tag in der Woche halten( bei 7)
     //Tag des Monatstrifft es besser wie "Woche"
-    let TagIndex = datToday.getDate();
+    let TagIndex = date.getDate();
 
     if ((TagIndex >= 1) & (TagIndex <= 7)) {
       document.getElementById("weekInMonth").innerText = "erste";
@@ -138,16 +138,17 @@ let date = new Date(
   
   
   
-  function HeutigenTagRotMakieren() {
-    todaydate = datToday.getDate();
-    let tdlist = document.getElementsByTagName("td");
-    for (let i = 0; i < tdlist.length; i++) {
-      if (tdlist[i].innerText == todaydate) {
-        tdlist[i].classList.add("makieren");
-      } 
-    }
-  }
-  HeutigenTagRotMakieren();
+  // function HeutigenTagRotMakieren() {
+  //   todaydate = datToday.getDate();
+  //   let tdlist = document.getElementsByTagName("td");
+  //   for (let i = 0; i < tdlist.length; i++) {
+  //     if (tdlist[i].innerText == todaydate) {
+  //       tdlist[i].classList.add("makieren");
+        
+  //     } 
+  //   }
+  // }
+  // HeutigenTagRotMakieren();
 
   
   
@@ -193,8 +194,8 @@ let date = new Date(
       "Dezember",
     ];
 
-    let month = datToday.getMonth() + 1;
-    let year = datToday.getYear() + 1900;
+    let month = date.getMonth() + 1;
+    let year = date.getYear() + 1900;
     let monateNameÜberschrift = monate[month - 1];
     document.getElementById("MonatÜberschrift").innerText =
       monateNameÜberschrift;
@@ -218,13 +219,19 @@ function Kalender() {
 
     for (j = 0; j < 7; j++) {
       // j wird gestartet bis wir 7 erreicht haben, weil die woche eben nur 7 Tage hat
-      let zelle = document.createElement("td"); // die innere Schleife generiert die einzelnen Zellen (td)
+      let zelle = document.createElement("td");
+      // die innere Schleife generiert die einzelnen Zellen (td)
 
       let aktuellerTag = i * 7 + j - restTageVormonat + 1; // hier wird geschaut in welcher woche wir sind indem wir i * 7 rechnen ( 0 *7 = 0, also woche 0)
       // + j also die Tage --> 0*7 + 2 = O Woche + zweiter Tag
       // - restTageVormonat --> der Monat startet ja nicht immer bei dem ersten mit Montag, die differenz sorgt dafür wann der kalender die erste Zeile ausgibt
       // und + 1 weil die woche standardmäßig bei 0 startet und somit der Montag erreicht wird, welcher bei 1 liegt
-
+      zelle.addEventListener("click", ()=>{
+        date.setDate(aktuellerTag)
+        InfoBox()
+        ÜberschriftAusgeben()
+        Feiertage()
+      }) 
       if (aktuellerTag > 0 && aktuellerTag <= tageImMonat) {
         zelle.textContent = aktuellerTag;
         // wenn der aktuelle Tag größer ist wie 0 und kleiner gleich der tage im Monat dann soll der Tag ausgegeben werden, ansonten soll die Zeile leer bleiben
@@ -274,6 +281,7 @@ function MonatWeiter() {
 <th class="day" id="sonntag">Sonntag</th>
 </tr>`;
   Kalender();
+  ÜberschriftAusgeben()
 }
 
 function MonatZurueck() {
@@ -289,7 +297,30 @@ function MonatZurueck() {
           <th class="day" id="sonntag">Sonntag</th>
         </tr>`;
   Kalender();
+  ÜberschriftAusgeben()
+  
 }
+
+// function RenderInfoBox (){
+//   Kalender()
+//   let alleTD = document.getElementsByTagName("td");
+//   for( i=0; alleTD.length; i ++){
+//     if(alleTd[i] == )
+//   }
+
+ 
+  
+  
+  
+//  console.log(alleTD)
+// }
+// RenderInfoBox()
+
+
+
+// alleTD.addEventListener("click", RenderInfoBox)
+
+
 
 button2.addEventListener("click", MonatWeiter);
 button1.addEventListener("click", MonatZurueck);
@@ -297,3 +328,105 @@ Kalender();
 
 
 
+console.log(date)
+
+
+function HeutigenTagRotMakieren() {
+  todaydate = date.getDate();
+  let tdlist = document.getElementsByTagName("td");
+  for (let i = 0; i < tdlist.length; i++) {
+    if (tdlist[i].innerText == todaydate) {
+      tdlist[i].classList.add("makieren");
+      
+    } 
+  }
+}
+HeutigenTagRotMakieren();
+
+
+// function OsterSonntag(){
+// let a = date.getFullYear() % 19;
+// let b = Math.floor(date.getFullYear()/100)
+// let c = date.getFullYear() % 100;
+// let d = Math.floor(b/4)
+// let e = b % 4;
+// let f = Math.floor((b+ 8) / 25)
+// let g = Math.floor ((b - f +1)/3)
+// let h = (19 * a + b - d -g +15) % 30
+// let i =  Math.floor(c / 4);
+// let k =c % 4;
+// let l = (32 + 2 * e + 2 * i - h - k) % 7;
+// let m = Math.floor((a + 11 * h + 22 * l) / 451);
+// let month = Math.floor((h + l - 7 * m + 114) / 31)  -1;
+// let day =  ((h + l - 7 * m + 114) % 31) + 1;
+
+
+
+// console.log(month)
+// console.log(day)
+// console.log(a)
+// console.log(b)
+// console.log(c)
+// console.log(d)
+// console.log(e)
+// console.log(f)
+// console.log(g)
+// console.log(h)
+// console.log(i)
+// console.log(k)
+// console.log(l)
+// console.log(m)
+// }
+// OsterSonntag()
+
+function Feiertage (){
+  let a = date.getFullYear() % 19;
+  let b = Math.floor(date.getFullYear()/100)
+  let c = date.getFullYear() % 100;
+  let d = Math.floor(b/4)
+  let e = b % 4;
+  let f = Math.floor((b+ 8) / 25)
+  let g = Math.floor ((b - f +1)/3)
+  let h = (19 * a + b - d -g +15) % 30
+  let i =  Math.floor(c / 4);
+  let k =c % 4;
+  let l = (32 + 2 * e + 2 * i - h - k) % 7;
+  let m = Math.floor((a + 11 * h + 22 * l) / 451);
+  let month = Math.floor((h + l - 7 * m + 114) / 31) -1;
+  let day =  ((h + l - 7 * m + 114) % 31) + 1;
+
+
+
+console.log(day)
+console.log(month)
+
+
+
+
+  if(date.getDate() === 24 && date.getMonth() == 11  ){
+    alert("weihnachten")
+  }
+  if(date.getDate() === 25 && date.getMonth() == 11  ){
+    alert("1.Weihnachtsfeiertag")
+  }
+  if(date.getDate() === 26 && date.getMonth() == 1  ){
+    alert("2.Weihnachtsfeiertag")
+  }
+  if(date.getDate() === 1 && date.getMonth() == 0  ){
+    alert("Neujahr")
+  }
+  if(date.getDate() === 1 && date.getMonth() == 2  ){
+    alert("Tag der Arbeit")
+  }
+  if(date.getDate() === 1 && date.getMonth() == 0  ){
+    alert("Neujahr")
+  }
+  if(date.getDate() === day && date.getMonth()== month){
+    alert("Ostern")
+  }
+   
+  
+  
+  
+}
+Feiertage()
