@@ -380,6 +380,9 @@ HeutigenTagRotMakieren();
 // OsterSonntag()
 
 function Feiertage (){
+  let holidayYesOrNo = document.getElementById("holidayYesNoD")
+
+
   let a = date.getFullYear() % 19;
   let b = Math.floor(date.getFullYear()/100)
   let c = date.getFullYear() % 100;
@@ -404,28 +407,39 @@ console.log(month)
 
 
   if(date.getDate() === 24 && date.getMonth() == 11  ){
+    
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
     alert("weihnachten")
   }
-  if(date.getDate() === 25 && date.getMonth() == 11  ){
+
+  else if(date.getDate() === 25 && date.getMonth() == 11  ){
     alert("1.Weihnachtsfeiertag")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-  if(date.getDate() === 26 && date.getMonth() == 1  ){
+  else if(date.getDate() === 26 && date.getMonth() == 1  ){
     alert("2.Weihnachtsfeiertag")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-  if(date.getDate() === 1 && date.getMonth() == 0  ){
+  else if(date.getDate() === 1 && date.getMonth() == 0  ){
     alert("Neujahr")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-  if(date.getDate() === 1 && date.getMonth() == 2  ){
+  else if(date.getDate() === 1 && date.getMonth() == 2  ){
     alert("Tag der Arbeit")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-  if(date.getDate() === 1 && date.getMonth() == 0  ){
+  else if(date.getDate() === 1 && date.getMonth() == 0  ){
     alert("Neujahr")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-  if(date.getDate() === day && date.getMonth()== month){
+  else if(date.getDate() === day && date.getMonth()== month){
     alert("Ostern")
+    holidayYesOrNo.innerText = "Es handelt sich um einen Feiertag"
   }
-   
-  
+
+else{
+  holidayYesOrNo.innerText ="Es handelt sich nicht um einen Feiertag"
+}
   
   
 }
